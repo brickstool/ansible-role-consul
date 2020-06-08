@@ -1,0 +1,36 @@
+---
+- name: Include OS-specific variables.
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_os_family }}.yml"
+    - default.yml
+
+- name: Include ipv4 network variables
+  include_vars: ipv4.yml
+
+- name: Define consul_environment_file
+  set_fact:
+    consul_environment_file: "{{ __consul_environment_file }}"
+  when: consul_environment_file is not defined
+
+- name: Define consul_ipv4_iface
+  set_fact:
+    consul_ipv4_iface: "{{ __consul_ipv4_iface }}"
+  when: consul_ipv4_iface is not defined
+
+- name: Define consul_ipv4_addr
+  set_fact:
+    consul_ipv4_addr: "{{ __consul_ipv4_addr }}"
+  when: consul_ipv4_addr is not defined
+
+- name: Define consul_ipv4_net
+  set_fact:
+    consul_ipv4_net: "{{ __consul_ipv4_net }}"
+  when: consul_ipv4_net is not defined
+
+- name: Define consul_ipv4_mask
+  set_fact:
+    consul_ipv4_mask: "{{ __consul_ipv4_mask }}"
+  when: consul_ipv4_mask is not defined
+...

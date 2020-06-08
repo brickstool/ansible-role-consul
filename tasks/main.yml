@@ -1,0 +1,29 @@
+---
+# Configure variables for role
+- include_tasks: variables.yml
+
+# Pre-setup tasks and checks
+- name: Fail if consul_encrypt_string is empty
+  fail:
+    msg: "The variable 'consul_encrypt_string' is empty"
+  when: consul_encrypt_string | length == 0
+
+- name: Check to see if Consul exists on the system
+  stat:
+    path: /usr/local/bin/consul
+  register: consul_upgrade
+
+# Configure Consul
+- include_tasks: install.yml
+- include_tasks: config.yml
+
+# Optional tasks when also configuring consul-template
+- include_tasks: ctpl.yml
+  when: consul_ctpl_enabled
+
+- name: Ensure Consul is started and enabled on boot
+  service:
+    name: consul
+    state: started
+    enabled: true
+...

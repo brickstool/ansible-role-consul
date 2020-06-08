@@ -1,0 +1,65 @@
+---
+- name: Login to Vault and grab a token
+  uri:
+    url: "{{ consul_ctpl_vault_url }}/v1/auth/ldap/login/{{ consul_ctpl_vault_ldap_user }}"
+    body_format: json
+    body:
+      password: "{{ consul_ctpl_vault_ldap_pass }}"
+    method: POST
+    validate_certs: no
+  register: __ctpl_vault_auth
+  delegate_to: localhost
+  run_once: true
+  when: consul_ctpl_vault_ldap
+
+- name: Generate a Vault token
+  uri:
+    url: "{{ consul_ctpl_vault_url }}/v1/auth/token/create"
+    headers:
+      X-Vault-Token: "{{ consul_ctpl_vault_auth_token | default(__ctpl_vault_auth.json.auth.client_token) }}"
+    body_format: json
+    body:
+      policies: ["{{ consul_ctpl_vault_policy }}"]
+      no_parent: true
+      renewable: true
+      period: "24h"
+    method: POST
+    validate_certs: no
+  register: __ctpl_generated_vault_token
+
+- name: Transfer the template which contains the generated Vault token
+  template:
+    src: ctpl/vault-token-consul.j2
+    dest: /root/.vault-token-consul
+    mode: '0600'
+    owner: root
+    group: root
+  notify: reload consul-template@consul
+
+- name: Transfer the consul-template configuration file for Consul
+  template:
+    src: ctpl.consul.hcl.j2
+    dest: /etc/consul-template.d/consul.hcl
+    mode: '0640'
+  notify: reload consul-template@consul
+
+- name: Transfer the consul-template certificate templates
+  template:
+    src: "{{ item }}"
+    dest: "/opt/consul/templates/{{ item | basename | regex_replace('\\.j2$', '') }}"
+    mode: '0640'
+    owner: consul
+    group: consul
+    variable_start_string: '[['
+    variable_end_string: ']]'
+  with_fileglob:
+    - '../templates/ctpl/*.j2'
+  notify: reload consul-template@consul
+
+- name: Ensure consul-template@consul is started and enabled
+  systemd:
+    daemon_reload: true
+    name: consul-template@consul
+    state: started
+    enabled: true
+...

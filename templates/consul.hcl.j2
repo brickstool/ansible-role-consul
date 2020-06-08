@@ -1,0 +1,62 @@
+#jinja2: trim_blocks:False
+[[ ansible_managed | comment ]]
+
+# General configuration
+datacenter = "[[ consul_datacenter ]]"
+data_dir = "/opt/consul"
+encrypt = "[[ consul_encrypt_string ]]"
+log_level = "INFO"
+{%- if not consul_server %}
+enable_local_script_checks = true
+{%- endif %}
+
+# Network configuration
+{%- set consul_network = (consul_ipv4_net + '/' + consul_ipv4_mask) | ipaddr('net') %}
+bind_addr = "{{ GetPrivateInterfaces | include \"network\" \"[[ consul_network ]]\" | attr \"address\" }}"
+
+{%- if consul_server %}
+client_addr = "[[ consul_client_addr | join(" ") ]] {{ GetPrivateInterfaces | include \"network\" \"[[ consul_network ]]\" | attr \"address\" }}"
+{% else %}
+client_addr = "[[ consul_client_addr | join(" ") ]]"
+{%- endif %}
+retry_join = [
+{%- for server in consul_retry_join %}
+  "[[ server ]]"{% if not loop.last %},
+{%- endif %}
+{%- endfor %}
+]
+
+ports {
+  http = 8500
+{%- if consul_tls %}
+  https = 8501
+{%- endif %}
+{%- if consul_grpc %}
+  grpc = 8502
+{%- endif %}
+}
+
+# Consul Connect
+connect {
+  enabled = true
+}
+
+# DNS config
+dns_config {
+  allow_stale = true
+  node_ttl = "1m"
+  use_cache = true
+  cache_max_age = "10s"
+  soa {
+    expire = 43200
+    min_ttl = 30
+    refresh = 1800
+    retry = 300
+  }
+}
+
+# Telemetry configuration
+telemetry {
+  disable_hostname = true
+  prometheus_retention_time = "24h"
+}

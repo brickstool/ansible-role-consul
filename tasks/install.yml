@@ -1,0 +1,32 @@
+---
+- name: Download and unzip the consul archive locally
+  unarchive:
+    src: "https://releases.hashicorp.com/consul/{{ consul_version }}/consul_{{ consul_version }}_linux_amd64.zip"
+    dest: /tmp
+    remote_src: yes
+    mode: '0755'
+  delegate_to: localhost
+  run_once: true
+
+- name: Transfer the consul binary to the target hosts
+  copy:
+    src: /tmp/consul
+    dest: /usr/local/bin/consul
+    mode: '0755'
+    owner: root
+    group: root
+  register: consul_install_binary
+  notify: restart consul
+
+- name: Enable Consul's autocomplete
+  shell: |
+    consul -autocomplete-install
+    complete -C /usr/local/bin/consul consul
+  when: consul_upgrade.stat.exists is defined and not consul_upgrade.stat.exists
+
+- name: Transfer the Consul systemd service unit file
+  template:
+    src: consul.service.j2
+    dest: /etc/systemd/system/consul.service
+  notify: restart consul
+...

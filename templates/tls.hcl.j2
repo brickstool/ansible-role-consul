@@ -1,0 +1,9 @@
+{{ ansible_managed | comment }}
+enable_agent_tls_for_checks = true
+
+verify_outgoing = false
+verify_server_hostname = true
+
+ca_file = "/etc/ssl/certs/consul.crt"
+cert_file = "/opt/consul/agent-certs/agent.crt"
+key_file = "/opt/consul/agent-certs/agent.key"

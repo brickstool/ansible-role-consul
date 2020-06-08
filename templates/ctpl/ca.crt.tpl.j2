@@ -1,0 +1,2 @@
+{{- with secret "[[ consul_ctpl_vault_pki_engine ]]/issue/[[ consul_ctpl_vault_pki_role ]]" "common_name=[[ consul_ctpl_vault_pki_cn ]]" "alt_names=[[ consul_ctpl_vault_pki_sans | join(',') ]]" "ttl=24h" }}
+{{- .Data.issuing_ca }}{{ end }}

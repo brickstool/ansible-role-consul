@@ -1,0 +1,111 @@
+---
+# The version of Consul to download and install.
+consul_version: "1.7.3"
+
+# The name of the Consul datacenter. Defaults to dc1.
+consul_datacenter: dc1
+
+# Whether the target host is a Consul server. False by default.
+consul_server: false
+
+# A list of private IP addresses that the Consul agent will listen on. By
+# default this is only 127.0.0.1.
+consul_client_addr:
+  - '127.0.0.1'
+
+# A list Consul server IP addresses.
+consul_retry_join: []
+# - 10.0.0.1
+# - 10.0.0.2
+# - 10.0.0.3
+
+# Whether to configure Consul to use TLS. False by default.
+consul_tls: false
+
+# Whether to configure Consul to use gRPC. False by default.
+consul_grpc: false
+
+# The string used to encrypt Consul serf messages using the gossip protocol.
+consul_encrypt_string: ""
+
+# A list of key-value combinations to add to the node_meta stanza. Empty by
+# default. The metadata.hcl.j2 template will iterate through the key-value
+# pairs using the jinja2 iteritems function.
+consul_node_meta: []
+# - key: value
+# - foo: bar
+# - dumb: joke
+
+# Whether to enable and configure consul-template alongside Consul. Defaults to
+# false. Right now this is only used to generate PKI certificates. Also relies
+# on consul-template already being installed on the host.
+consul_ctpl_enabled: false
+
+# The host[:port] portion of the URL of the Vault instance. Defaults to
+# 127.0.0.1:8200 if not given. Only used with consul-template.
+consul_ctpl_vault_url: 'https://127.0.0.1:8200'
+
+# The Vault policy used in generating tokens for consul-template.
+consul_ctpl_vault_policy: "default"
+
+# Whether to use LDAP authentication to generate a Vault token. Default is
+# false.
+consul_ctpl_vault_ldap: false
+
+# The LDAP username used to log in to Vault. Undefined by default.
+# consul_ctpl_vault_ldap_user: ''
+
+# The LDAP password used to log in to Vault. Undefined by default.
+# consul_ctpl_vault_ldap_pass: ''
+
+# The authentication token to use when generating the consul-template token.
+# Undefined by default. If you are not using the LDAP authentication method,
+# then you must define this variable and supply it with an existing token.
+# consul_ctpl_vault_auth_token: ''
+
+# The Vault PKI engine for generating TLS certificates. Used in the templates
+# found under 'templates/ctpl/'. Undefined by default.
+# consul_ctpl_vault_pki_engine: ''
+
+# The Vault PKI role for generating Consul TLS certificates. Used in the
+# templates found under 'templates/ctpl/'. Undefined by default.
+# consul_ctpl_vault_pki_role: ''
+
+# The common name to use when generating TLS certificates for Consul servers.
+# Used in the templates found under 'templates/ctpl/'. Undefined by default.
+#
+# NOTE: if using variable interpolation with ansible, you will need to use
+# "[[ var ]]" and NOT "{{ var }}" as consul-template uses double-curly braces
+# for variable interpolation also. See the example below.
+#
+# consul_ctpl_vault_pki_cn: "[[ inventory_hostname ]].dc1.consul"
+
+# A list of SANs to use for generating Consul TLS certificates. Used in the
+# templates found under 'templates/ctpl/'. Undefined by default. Make sure
+# one of these items is server.<DATACENTER>.<DOMAIN> on your Consul servers.
+# See the official Consul guides for enabling TLS for more information.
+#
+# NOTE: if using variable interpolation with ansible, you will need to use
+# "[[ var ]]" and NOT "{{ var }}" as consul-template uses double-curly braces
+# for variable interpolation also. See the example below.
+#
+# consul_ctpl_vault_pki_sans: []
+#   - localhost
+#   - server.dc1.consul
+#   - "[[ ansible_fqdn ]]"
+
+#
+# Variables below are loaded from vars files in the vars/ directory.
+#
+
+# The value of consul_environment_file will change based on the OS. Defaults to
+# the OS-independant /etc/environment if no OS is matched and is not
+# otherwise provided.
+# consul_environment_file: /etc/environment
+
+# The values of the following variables will use equivalent values from
+# ansible_default_ipv4 if not otherwise set.
+# consul_ipv4_iface: "{{ ansible_default_ipv4.interface }}"
+# consul_ipv4_addr: "{{ ansible_default_ipv4.address }}"
+# consul_ipv4_net: "{{ ansible_default_ipv4.network }}"
+# consul_ipv4_mask: "{{ ansible_default_ipv4.netmask }}"

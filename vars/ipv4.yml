@@ -1,0 +1,5 @@
+---
+__consul_ipv4_iface: "{{ ansible_default_ipv4.interface }}"
+__consul_ipv4_addr: "{{ ansible_default_ipv4.address }}"
+__consul_ipv4_net: "{{ ansible_default_ipv4.network }}"
+__consul_ipv4_mask: "{{ ansible_default_ipv4.netmask }}"

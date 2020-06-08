@@ -1,0 +1,4 @@
+{{ ansible_managed | comment }}
+CONSUL_CACERT=/etc/ssl/certs/consul.crt
+CONSUL_CLIENT_CERT=/opt/consul/agent-certs/agent.crt
+CONSUL_CLIENT_KEY=/opt/consul/agent-certs/agent.key

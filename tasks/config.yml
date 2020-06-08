@@ -1,0 +1,71 @@
+---
+- name: Create the consul user
+  user:
+    name: consul
+    system: yes
+    home: /etc/consul.d
+    shell: /bin/false
+
+- name: Create the Consul data directory
+  file:
+    path: /opt/consul
+    state: directory
+    owner: consul
+    group: consul
+    recurse: yes
+
+- name: Make sure the /etc/consul.d directory exists and is owned by the consul user and group
+  file:
+    path: /etc/consul.d
+    state: directory
+    owner: consul
+    group: consul
+    recurse: yes
+
+- name: Create the consul.hcl configuration file from a template
+  template:
+    src: consul.hcl.j2
+    dest: /etc/consul.d/consul.hcl
+    owner: consul
+    group: consul
+    mode: '0640'
+    variable_start_string: "[["
+    variable_end_string: "]]"
+  notify: restart consul
+
+- name: Create the server.hcl configuration file from a template
+  template:
+    src: server.hcl.j2
+    dest: /etc/consul.d/server.hcl
+    owner: consul
+    group: consul
+    mode: '0640'
+  when: consul_server
+  notify: restart consul
+
+- name: Create the metadata.hcl configuration file from a template
+  template:
+    src: metadata.hcl.j2
+    dest: /etc/consul.d/metadata.hcl
+    owner: consul
+    group: consul
+    mode: '0640'
+  when: consul_node_meta | length > 0
+  notify: restart consul
+
+- name: Create the tls.hcl configuration file from a template
+  template:
+    src: tls.hcl.j2
+    dest: /etc/consul.d/tls.hcl
+    owner: consul
+    group: consul
+    mode: '0640'
+  when: consul_tls
+  notify: restart consul
+
+- name: Add Consul environment file
+  template:
+    src: envfile.consul
+    dest: "{{ consul_environment_file }}"
+  notify: restart consul
+...

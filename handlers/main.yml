@@ -1,0 +1,16 @@
+---
+- name: restart consul
+  systemd:
+    daemon_reload: true
+    name: consul
+    state: restarted
+    enabled: true
+  when: consul_upgrade.stat.exists
+
+- name: reload consul-template@consul
+  systemd:
+    daemon_reload: true
+    name: consul-template@consul
+    state: restarted
+    enabled: true
+...

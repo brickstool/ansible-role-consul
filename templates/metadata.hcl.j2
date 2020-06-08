@@ -1,0 +1,11 @@
+#jinja2: trim_blocks:False
+{{ ansible_managed | comment }}
+
+# Node metadata
+node_meta {
+{%- for dict in consul_node_meta %}
+{%- for key, value in dict.items() %}
+  "{{ key }}" = "{{ value }}"{% endfor %}{% if not loop.last %}
+{%- endif %}
+{%- endfor %}
+}
