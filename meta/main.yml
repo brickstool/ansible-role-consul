@@ -17,10 +17,21 @@ galaxy_info:
         - all
     - name: Debian
       versions:
-        - all
+        - jessie
+        - stretch
+        - buster
+        - bullseye
     - name: Ubuntu
       versions:
-        - all
+        - xenial
+        - yakkety
+        - zesty
+        - artful
+        - bionic
+        - cosmic
+        - disco
+        - eoan
+        - focal
   galaxy_tags:
     - consul
     - consul-template
