@@ -34,4 +34,6 @@ galaxy_info:
         - focal
   galaxy_tags:
     - consul
-    - consul-template
+    - cloud
+    - clustering
+    - networking
