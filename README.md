@@ -1,3 +1,5 @@
+![](https://github.com/brickstool/ansible-role-consul/workflows/master/badge.svg)
+
 # Ansible Role: Consul
 
 This role installs and configures a Consul cluster.
