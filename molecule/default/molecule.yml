@@ -7,7 +7,6 @@ platforms:
   - name: server
     image: centos:8
     command: /sbin/init
-    pre_build_image: true
     tmpfs:
       - /run
       - /tmp
@@ -18,7 +17,6 @@ platforms:
   - name: client
     image: centos:8
     command: /sbin/init
-    pre_build_image: true
     tmpfs:
       - /run
       - /tmp
