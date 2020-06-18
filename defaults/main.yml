@@ -39,57 +39,47 @@ consul_node_meta: []
 # Whether to enable and configure consul-template alongside Consul. Defaults to
 # false. Right now this is only used to generate PKI certificates. Also relies
 # on consul-template already being installed on the host.
-consul_ctpl_enabled: false
+ctpl_consul_enabled: false
 
 # The host[:port] portion of the URL of the Vault instance. Defaults to
 # 127.0.0.1:8200 if not given. Only used with consul-template.
-consul_ctpl_vault_url: 'https://127.0.0.1:8200'
+ctpl_consul_vault_url: 'https://127.0.0.1:8200'
 
 # The Vault policy used in generating tokens for consul-template.
-consul_ctpl_vault_policy: "default"
+ctpl_consul_vault_policy: "default"
 
 # Whether to use LDAP authentication to generate a Vault token. Default is
 # false.
-consul_ctpl_vault_ldap: false
+ctpl_consul_vault_ldap: false
 
 # The LDAP username used to log in to Vault. Undefined by default.
-# consul_ctpl_vault_ldap_user: ''
+# ctpl_consul_vault_ldap_user: ''
 
 # The LDAP password used to log in to Vault. Undefined by default.
-# consul_ctpl_vault_ldap_pass: ''
+# ctpl_consul_vault_ldap_pass: ''
 
 # The authentication token to use when generating the consul-template token.
 # Undefined by default. If you are not using the LDAP authentication method,
 # then you must define this variable and supply it with an existing token.
-# consul_ctpl_vault_auth_token: ''
+# ctpl_consul_vault_auth_token: ''
 
 # The Vault PKI engine for generating TLS certificates. Used in the templates
 # found under 'templates/ctpl/'. Undefined by default.
-# consul_ctpl_vault_pki_engine: ''
+# ctpl_consul_vault_pki_engine: ''
 
 # The Vault PKI role for generating Consul TLS certificates. Used in the
 # templates found under 'templates/ctpl/'. Undefined by default.
-# consul_ctpl_vault_pki_role: ''
+# ctpl_consul_vault_pki_role: ''
 
 # The common name to use when generating TLS certificates for Consul servers.
 # Used in the templates found under 'templates/ctpl/'. Undefined by default.
-#
-# NOTE: if using variable interpolation with ansible, you will need to use
-# "[[ var ]]" and NOT "{{ var }}" as consul-template uses double-curly braces
-# for variable interpolation also. See the example below.
-#
-# consul_ctpl_vault_pki_cn: "[[ inventory_hostname ]].dc1.consul"
+# ctpl_consul_vault_pki_cn: "[[ inventory_hostname ]].dc1.consul"
 
 # A list of SANs to use for generating Consul TLS certificates. Used in the
 # templates found under 'templates/ctpl/'. Undefined by default. Make sure
 # one of these items is server.<DATACENTER>.<DOMAIN> on your Consul servers.
 # See the official Consul guides for enabling TLS for more information.
-#
-# NOTE: if using variable interpolation with ansible, you will need to use
-# "[[ var ]]" and NOT "{{ var }}" as consul-template uses double-curly braces
-# for variable interpolation also. See the example below.
-#
-# consul_ctpl_vault_pki_sans: []
+# ctpl_consul_vault_pki_sans: []
 #   - localhost
 #   - server.dc1.consul
 #   - "[[ ansible_fqdn ]]"

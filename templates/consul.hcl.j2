@@ -2,25 +2,24 @@
 [[ ansible_managed | comment ]]
 
 # General configuration
-datacenter = "[[ consul_datacenter ]]"
+datacenter = "[[ _consul_datacenter ]]"
 data_dir = "/opt/consul"
-encrypt = "[[ consul_encrypt_string ]]"
+encrypt = "[[ _consul_encrypt_string ]]"
 log_level = "INFO"
 {%- if not consul_server %}
 enable_local_script_checks = true
 {%- endif %}
 
 # Network configuration
-{%- set consul_network = (consul_ipv4_net + '/' + consul_ipv4_mask) | ipaddr('net') %}
-bind_addr = "{{ GetPrivateInterfaces | include \"network\" \"[[ consul_network ]]\" | attr \"address\" }}"
+bind_addr = "{{ GetPrivateInterfaces | include \"network\" \"[[ _consul_network ]]\" | attr \"address\" }}"
 
 {%- if consul_server %}
-client_addr = "[[ consul_client_addr | join(" ") ]] {{ GetPrivateInterfaces | include \"network\" \"[[ consul_network ]]\" | attr \"address\" }}"
+client_addr = "[[ _consul_client_addr ]] {{ GetPrivateInterfaces | include \"network\" \"[[ _consul_network ]]\" | attr \"address\" }}"
 {% else %}
-client_addr = "[[ consul_client_addr | join(" ") ]]"
+client_addr = "[[ _consul_client_addr ]]"
 {%- endif %}
 retry_join = [
-{%- for server in consul_retry_join %}
+{%- for server in _consul_retry_join %}
   "[[ server ]]"{% if not loop.last %},
 {%- endif %}
 {%- endfor %}

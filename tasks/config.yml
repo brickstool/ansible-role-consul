@@ -23,6 +23,33 @@
     group: consul
     recurse: yes
 
+# The following 'set_fact' tasks make sure that variable interpolation works as
+# expected.
+- name: Define _consul_datacenter
+  set_fact:
+    _consul_datacenter: "{{ consul_datacenter }}"
+  when: _consul_datacenter is not defined
+
+- name: Define _consul_encrypt_string
+  set_fact:
+    _consul_encrypt_string: "{{ consul_encrypt_string }}"
+  when: _consul_encrypt_string is not defined
+
+- name: Define _consul_network
+  set_fact:
+    _consul_network: "{{ (consul_ipv4_net + '/' + consul_ipv4_mask) | ipaddr('net') }}"
+  when: _consul_network is not defined
+
+- name: Define _consul_client_addr
+  set_fact:
+    _consul_client_addr: "{{ consul_client_addr | join(' ') }}"
+  when: _consul_client_addr is not defined
+
+- name: Define _consul_retry_join
+  set_fact:
+    _consul_retry_join: "{{ consul_retry_join }}"
+  when: _consul_retry_join is not defined
+
 - name: Create the consul.hcl configuration file from a template
   template:
     src: consul.hcl.j2

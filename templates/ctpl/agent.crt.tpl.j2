@@ -1,2 +1,2 @@
-{{- with secret "[[ consul_ctpl_vault_pki_engine ]]/issue/[[ consul_ctpl_vault_pki_role ]]" "common_name=[[ consul_ctpl_vault_pki_cn ]]" "alt_names=[[ consul_ctpl_vault_pki_sans | join(',') ]]" "ip_sans=[[ consul_client_addr | join(',') ]]" "ttl=24h" }}
+{{- with secret "[[ _ctpl_consul_vault_pki_engine ]]/issue/[[ _ctpl_consul_vault_pki_role ]]" "common_name=[[ _ctpl_consul_vault_pki_cn ]]" "alt_names=[[ _ctpl_consul_vault_pki_sans ]]" "ip_sans=[[ _ctpl_consul_vault_pki_ip_sans ]]" "ttl=24h" }}
 {{- .Data.certificate }}{{ end }}

@@ -43,6 +43,9 @@
     mode: '0640'
   notify: reload consul-template@consul
 
+- name: Set ctpl variables so that literal '{{' and '}}' are not passed to the template
+  include_tasks: ctpl_variables.yml
+
 - name: Transfer the consul-template certificate templates
   template:
     src: "{{ item }}"
