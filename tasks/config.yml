@@ -5,6 +5,7 @@
     system: yes
     home: /etc/consul.d
     shell: /bin/false
+    state: present
 
 - name: Create the Consul data directory
   file:

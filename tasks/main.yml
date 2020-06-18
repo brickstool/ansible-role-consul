@@ -17,7 +17,7 @@
 - include_tasks: install.yml
 - include_tasks: config.yml
 
-# Optional tasks when also configuring consul-template
+# Optional tasks to configure consul-template
 - include_tasks: ctpl.yml
   when: consul_ctpl_enabled
 
