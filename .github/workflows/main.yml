@@ -17,4 +17,4 @@ jobs:
           pip install ansible 'molecule[docker]' netaddr
       - name: Test with molecule
         run: |
-          molecule test
+          molecule --debug test
