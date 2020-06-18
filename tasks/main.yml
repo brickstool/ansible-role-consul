@@ -30,4 +30,9 @@
 
 - name: Run systemctl status consul
   command: 'systemctl status consul'
+  ignore_errors: true
+
+- name: Run journalctl for consul
+  command: 'journalctl -u consul'
+  ignore_errors: true
 ...
