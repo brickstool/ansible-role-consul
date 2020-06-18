@@ -4,7 +4,7 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: consul-server
+  - name: server
     image: centos:8
     command: /sbin/init
     tmpfs:
@@ -14,7 +14,7 @@ platforms:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     groups:
       - server
-  - name: consul-client
+  - name: client
     image: centos:8
     command: /sbin/init
     tmpfs:
@@ -31,6 +31,6 @@ provisioner:
       all:
         consul_encrypt_string: 'encryptme123='
         consul_retry_join:
-          - consul-server
+          - "{{ hostvars['server']['ansible_default_ipv4']['address'] }}"
       server:
         consul_server: true
