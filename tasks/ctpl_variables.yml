@@ -24,4 +24,3 @@
     _ctpl_consul_vault_pki_ip_sans: "{{ consul_client_addr | join(',') }}"
   when: _ctpl_consul_vault_pki_ip_sans is not defined
 ...
-
