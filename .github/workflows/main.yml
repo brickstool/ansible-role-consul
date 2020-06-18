@@ -1,4 +1,4 @@
-name: Molecule testing
+name: Molecule
 
 on: [push]
 
