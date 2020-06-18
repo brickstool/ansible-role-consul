@@ -99,5 +99,4 @@ If you see any errors or think this role could be improved in some way, you are 
 
 ## TO-DO
 
-1. Add molecule tests
 1. Add additional configuration options for Consul
