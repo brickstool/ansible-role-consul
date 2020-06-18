@@ -12,8 +12,8 @@ On the Ansible controller:
 * The `unzip` system package found on most Linux distributions
 
 For the target hosts/environment:
-* Linux OS
-* systemd
+* Linux
+* `systemd`
 
 ## Dependencies
 
