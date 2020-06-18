@@ -31,6 +31,6 @@ provisioner:
       all:
         consul_encrypt_string: 'encryptme123='
         consul_retry_join:
-          - "{{ hostvars['server']['ansible_default_ipv4']['address'] }}"
+          - "[[ hostvars['server']['ansible_default_ipv4']['address'] ]]"
       server:
         consul_server: true
