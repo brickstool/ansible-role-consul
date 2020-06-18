@@ -3,7 +3,7 @@ name: master
 on:
   push:
     paths-ignore:
-    - 'README.md'
+    - '*.md'
 
 jobs:
   molecule:
