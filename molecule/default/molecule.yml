@@ -32,5 +32,3 @@ provisioner:
           - consul-server
       server:
         consul_server: true
-verifier:
-  name: ansible
