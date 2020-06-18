@@ -60,7 +60,7 @@ This is absolutely outside the scope of this role, sorry.
 ## Example Playbook
 
 The following examples are the minimum configuration you would need to successfully run this role.
-Generate an actual encryption key for `consul_encrypt_string` using `consul keygen`, replacing "encryptme123" with the generated key in the examples below.
+Generate a different encryption key for `consul_encrypt_string` using `consul keygen`, replacing "NlJcajOKaGiitpFQBLA7BlDlu25PSm3AkRUYAI2MixE=" with the generated key in the examples below.
 
 *For a Consul server node*:
 
@@ -71,7 +71,7 @@ Generate an actual encryption key for `consul_encrypt_string` using `consul keyg
     - role: brickstool.consul
       vars:
         consul_server: true
-        consul_encrypt_string: 'encryptme123='
+        consul_encrypt_string: 'NlJcajOKaGiitpFQBLA7BlDlu25PSm3AkRUYAI2MixE='
         consul_retry_join:
           - 10.0.0.1
 ```
@@ -84,7 +84,7 @@ Generate an actual encryption key for `consul_encrypt_string` using `consul keyg
   roles:
     - role: brickstool.consul
       vars:
-        consul_encrypt_string: 'encryptme123='
+        consul_encrypt_string: 'NlJcajOKaGiitpFQBLA7BlDlu25PSm3AkRUYAI2MixE='
         consul_retry_join:
           - 10.0.0.1
 ```
