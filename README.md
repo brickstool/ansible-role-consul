@@ -1,4 +1,4 @@
-![](https://github.com/brickstool/ansible-role-consul/workflows/master/badge.svg)
+![](https://github.com/brickstool/ansible-role-consul/workflows/master/badge.svg?branch=master)
 
 # Ansible Role: Consul
 
