@@ -19,7 +19,7 @@
 
 # Optional tasks to configure consul-template
 - include_tasks: ctpl.yml
-  when: consul_ctpl_enabled
+  when: ctpl_consul_enabled
 
 - name: Ensure Consul is started and enabled on boot
   systemd:

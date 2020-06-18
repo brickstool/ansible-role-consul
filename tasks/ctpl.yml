@@ -1,25 +1,25 @@
 ---
 - name: Login to Vault and grab a token
   uri:
-    url: "{{ consul_ctpl_vault_url }}/v1/auth/ldap/login/{{ consul_ctpl_vault_ldap_user }}"
+    url: "{{ ctpl_consul_vault_url }}/v1/auth/ldap/login/{{ ctpl_consul_vault_ldap_user }}"
     body_format: json
     body:
-      password: "{{ consul_ctpl_vault_ldap_pass }}"
+      password: "{{ ctpl_consul_vault_ldap_pass }}"
     method: POST
     validate_certs: no
   register: __ctpl_vault_auth
   delegate_to: localhost
   run_once: true
-  when: consul_ctpl_vault_ldap
+  when: ctpl_consul_vault_ldap
 
 - name: Generate a Vault token
   uri:
-    url: "{{ consul_ctpl_vault_url }}/v1/auth/token/create"
+    url: "{{ ctpl_consul_vault_url }}/v1/auth/token/create"
     headers:
-      X-Vault-Token: "{{ consul_ctpl_vault_auth_token | default(__ctpl_vault_auth.json.auth.client_token) }}"
+      X-Vault-Token: "{{ ctpl_consul_vault_auth_token | default(__ctpl_vault_auth.json.auth.client_token) }}"
     body_format: json
     body:
-      policies: ["{{ consul_ctpl_vault_policy }}"]
+      policies: ["{{ ctpl_consul_vault_policy }}"]
       no_parent: true
       renewable: true
       period: "24h"
