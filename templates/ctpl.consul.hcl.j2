@@ -10,8 +10,8 @@ syslog {
 }
 
 wait {
-  min = "30s"
-  max = "90s"
+  min = "1m"
+  max = "5m"
 }
 
 consul {
@@ -40,10 +40,6 @@ template {
   perms            = 0600
   command          = "sh -c 'chown -R consul:consul /opt/consul/agent-certs ; systemctl reload consul'"
   command_timeout  = "30s"
-  wait {
-    min = "30s"
-    max = "90s"
-  }
 }
 
 template {
@@ -53,10 +49,6 @@ template {
   perms            = 0600
   command          = "sh -c 'chown -R consul:consul /opt/consul/agent-certs ; systemctl reload consul'"
   command_timeout  = "30s"
-  wait {
-    min = "30s"
-    max = "90s"
-  }
 }
 
 template {
@@ -66,8 +58,4 @@ template {
   perms            = 0644
   command          = "systemctl reload consul"
   command_timeout  = "30s"
-  wait {
-    min = "30s"
-    max = "90s"
-  }
 }
