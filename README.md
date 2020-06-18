@@ -60,7 +60,7 @@ This is absolutely outside the scope of this role, sorry.
 ## Example Playbook
 
 The following examples are the minimum configuration you would need to successfully run this role.
-Generate a different encryption key for `consul_encrypt_string` using `consul keygen`, replacing "NlJcajOKaGiitpFQBLA7BlDlu25PSm3AkRUYAI2MixE=" with the generated key in the examples below.
+Generate a different encryption key for `consul_encrypt_string` using `consul keygen`, replacing "`NlJcajOKaGiitpFQBLA7BlDlu25PSm3AkRUYAI2MixE=`" with the generated key in the examples below.
 
 *For a Consul server node*:
 
