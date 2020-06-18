@@ -68,5 +68,6 @@
   template:
     src: envfile.consul
     dest: "{{ consul_environment_file }}"
+  when: consul_tls
   notify: restart consul
 ...
