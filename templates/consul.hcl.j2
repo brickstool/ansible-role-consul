@@ -11,10 +11,10 @@ enable_local_script_checks = true
 {%- endif %}
 
 # Network configuration
-bind_addr = "{{ GetPrivateInterfaces | include \"network\" \"[[ _consul_network ]]\" | attr \"address\" }}"
+bind_addr = "{{ GetInterfaceIP \"[[ _consul_ipv4_iface ]]\" }}"
 
 {%- if consul_server %}
-client_addr = "[[ _consul_client_addr ]] {{ GetPrivateInterfaces | include \"network\" \"[[ _consul_network ]]\" | attr \"address\" }}"
+client_addr = "[[ _consul_client_addr ]] {{ GetInterfaceIP \"[[ _consul_ipv4_iface ]]\" }}"
 {% else %}
 client_addr = "[[ _consul_client_addr ]]"
 {%- endif %}

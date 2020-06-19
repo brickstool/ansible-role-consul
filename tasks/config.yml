@@ -35,10 +35,10 @@
     _consul_encrypt_string: "{{ consul_encrypt_string }}"
   when: _consul_encrypt_string is not defined
 
-- name: Define _consul_network
+- name: Define _consul_ipv4_iface
   set_fact:
-    _consul_network: "{{ (consul_ipv4_net + '/' + consul_ipv4_mask) | ipaddr('net') }}"
-  when: _consul_network is not defined
+    _consul_ipv4_iface: "{{ consul_ipv4_iface }}"
+  when: _consul_ipv4_iface is not defined
 
 - name: Define _consul_client_addr
   set_fact:
