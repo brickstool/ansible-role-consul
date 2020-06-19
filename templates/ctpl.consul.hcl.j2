@@ -25,7 +25,7 @@ consul {
 }
 
 vault {
-  address = "{{ consul_ctpl_vault_url }}"
+  address = "{{ ctpl_consul_vault_url }}"
   vault_agent_token_file = "/root/.vault-token-consul"
   renew_token = true
   ssl {
