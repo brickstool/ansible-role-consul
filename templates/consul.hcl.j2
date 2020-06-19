@@ -5,7 +5,7 @@
 datacenter = "[[ _consul_datacenter ]]"
 data_dir = "/opt/consul"
 encrypt = "[[ _consul_encrypt_string ]]"
-log_level = "INFO"
+log_level = "WARN"
 {%- if not consul_server %}
 enable_local_script_checks = true
 {%- endif %}
