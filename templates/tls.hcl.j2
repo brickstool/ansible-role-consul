@@ -1,7 +1,10 @@
 {{ ansible_managed | comment }}
-enable_agent_tls_for_checks = true
-
-verify_outgoing = false
+{%- if consul_server %}
+verify_incoming = true
+{% else %}
+verify_incoming = false
+{%- endif %}
+verify_outgoing = true
 verify_server_hostname = true
 
 ca_file = "/etc/ssl/certs/consul.crt"
