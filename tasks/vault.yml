@@ -1,0 +1,42 @@
+---
+- name: Login to Vault and grab a token
+  uri:
+    url: "{{ consul_vault_auth_url | default(consul_vault_url) }}/v1/auth/ldap/login/{{ consul_vault_ldap_user }}"
+    method: POST
+    validate_certs: no
+    body_format: json
+    body:
+      password: "{{ consul_vault_ldap_pass }}"
+  register: __consul_ldap_login
+  delegate_to: localhost
+  run_once: true
+  ignore_errors: "{{ ansible_check_mode }}"
+  when: consul_server and consul_vault_ldap_enabled
+
+- name: Generate a token with a policy allowing access to the token-role from consul servers
+  uri:
+    url: "{{ consul_vault_auth_url | default(consul_vault_url) }}/v1/auth/token/create"
+    method: POST
+    validate_certs: no
+    body_format: json
+    body:
+      policies: ["{{ consul_vault_policy }}"]
+      no_parent: true
+      renewable: true
+      period: "24h"
+    headers:
+      X-Vault-Token: "{{ consul_vault_auth_token | default(__consul_ldap_login.json.auth.client_token) }}"
+  register: __consul_vault_token
+  ignore_errors: "{{ ansible_check_mode }}"
+  changed_when: True
+  notify: restart consul with vault token
+  when: consul_server
+
+- name: Create the vault config file from a template
+  template:
+    src: vault.hcl.j2
+    dest: /etc/consul.d/vault.hcl
+    owner: "{{ consul_user }}"
+    group: "{{ consul_group }}"
+  notify: reload consul
+...
