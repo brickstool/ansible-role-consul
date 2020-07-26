@@ -22,7 +22,7 @@ jobs:
         run: |
           molecule test
   release:
-    runs_on: ubuntu-18.04
+    runs-on: ubuntu-18.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
