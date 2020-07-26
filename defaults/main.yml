@@ -1,6 +1,6 @@
 ---
 # The version of Consul to download and install.
-consul_version: "1.7.3"
+consul_version: "1.8.0"
 
 # The name of the Consul datacenter. Defaults to dc1.
 consul_datacenter: dc1
