@@ -32,6 +32,7 @@ ports {
 {%- endif %}
 }
 
+{% if consul_dns %}
 # DNS config
 dns_config {
   allow_stale = true
@@ -45,6 +46,7 @@ dns_config {
     retry = 300
   }
 }
+{% endif %}
 
 # Telemetry configuration
 telemetry {

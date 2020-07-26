@@ -25,6 +25,9 @@ consul_tls: false
 # Whether to configure Consul to use gRPC. False by default.
 consul_grpc: false
 
+# Whether to configure Consul's DNS settings. False by default
+consul_dns: false
+
 # Whether to configure Consul Connect with the Vault CA
 consul_vault_ca_enabled: false
 
