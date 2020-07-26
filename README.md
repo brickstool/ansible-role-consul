@@ -1,9 +1,16 @@
-![](https://github.com/brickstool/ansible-role-consul/workflows/build/badge.svg?branch=master)
+<p align="center">
+  <a href="https://github.com/brickstool/ansible-role-consul/actions">
+    <img alt="GitHub Actions" src="https://github.com/brickstool/ansible-role-consul/workflows/build/badge.svg?branch=master">
+  </a>
+  <a href="https://github.com/semantic-release/semantic-release">
+    <img alt="semantic-release" src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg">
+  </a>
+</p>
 
-# Ansible Role: Consul
+<h1 align="center" style="border-bottom: none;">Ansible Role: Consul</h1>
 
 This role installs and configures a Consul cluster.
-It aims to have sensible defaults and to only require a small amount of modification out of the box.
+It aims to have sensible defaults and only requires a small amount of modification out of the box.
 
 ## Requirements
 
