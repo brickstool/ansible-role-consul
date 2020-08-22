@@ -1,3 +1,10 @@
+## [1.1.0](https://github.com/brickstool/ansible-role-consul/compare/1.0.2...1.1.0) (2020-08-22)
+
+
+### Features
+
+* add tls verify option for consul-template ([14a6dfa](https://github.com/brickstool/ansible-role-consul/commit/14a6dfa8750ded9927fbe8a92cb6c90378bdaccc))
+
 ### [1.0.2](https://github.com/brickstool/ansible-role-consul/compare/1.0.1...1.0.2) (2020-08-01)
 
 
