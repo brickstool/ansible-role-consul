@@ -1,3 +1,4 @@
+#jinja2: trim_blocks:False
 pid_file = "/run/consul-template-consul.pid"
 reload_signal = "SIGHUP"
 kill_signal = "SIGINT"
@@ -30,6 +31,9 @@ vault {
   renew_token = true
   ssl {
     enabled = true
+{%- if ctpl_consul_vault_verify is defined %}
+    verify  = {{ ctpl_consul_vault_verify | bool | lower }}
+{%- endif %}
   }
 }
 
