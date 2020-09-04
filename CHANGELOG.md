@@ -1,3 +1,16 @@
+## [2.0.0](https://github.com/snoord/ansible-role-consul/compare/1.1.0...2.0.0) (2020-09-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* My Github username and email have been updated,
+alongisde the Ansible Galaxy namespace where this role is made
+available. Please update your playbooks!
+
+### Code Refactoring
+
+* update github and galaxy namespace ([660620a](https://github.com/snoord/ansible-role-consul/commit/660620ac21ce7d4b8ddcd806f7483b02a5b31b8c))
+
 ## [1.1.0](https://github.com/snoord/ansible-role-consul/compare/1.0.2...1.1.0) (2020-08-22)
 
 
