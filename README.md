@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://github.com/brickstool/ansible-role-consul/actions">
-    <img alt="GitHub Actions" src="https://github.com/brickstool/ansible-role-consul/workflows/build/badge.svg?branch=master">
+  <a href="https://github.com/snoord/ansible-role-consul/actions">
+    <img alt="GitHub Actions" src="https://github.com/snoord/ansible-role-consul/workflows/build/badge.svg?branch=master">
   </a>
   <a href="https://github.com/semantic-release/semantic-release">
     <img alt="semantic-release" src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg">
@@ -26,7 +26,7 @@ For the target hosts/environment:
 
 If you do not want to use consul-template in this set-up at all, then there are no dependencies!
 
-The consul-template (`ctpl`) tasks in `tasks/ctpl.yml` will require the installation and configuration of consul-template as an instantiated `systemd` service  - my [Ansible role for consul-template](https://github.com/brickstool/ansible-role-consul-template) will do this for you.
+The consul-template (`ctpl`) tasks in `tasks/ctpl.yml` will require the installation and configuration of consul-template as an instantiated `systemd` service  - my [Ansible role for consul-template](https://github.com/snoord/ansible-role-consul-template) will do this for you.
 
 Otherwise if you would like to configure this yourself, the `systemd` unit file for the consul-template service should look something like this:
 
@@ -75,7 +75,7 @@ Generate a different encryption key for `consul_encrypt_string` using `consul ke
 - hosts: consul-server
   become: yes
   roles:
-    - role: brickstool.consul
+    - role: snoord.consul
       vars:
         consul_server: true
         consul_encrypt_string: 'NlJcajOKaGiitpFQBLA7BlDlu25PSm3AkRUYAI2MixE='
@@ -89,7 +89,7 @@ Generate a different encryption key for `consul_encrypt_string` using `consul ke
 - hosts: consul-client
   become: yes
   roles:
-    - role: brickstool.consul
+    - role: snoord.consul
       vars:
         consul_encrypt_string: 'NlJcajOKaGiitpFQBLA7BlDlu25PSm3AkRUYAI2MixE='
         consul_retry_join:
