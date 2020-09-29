@@ -1,3 +1,10 @@
+## [2.1.0](https://github.com/snoord/ansible-role-consul/compare/2.0.1...2.1.0) (2020-09-29)
+
+
+### Features
+
+* update consul version ([76ac85d](https://github.com/snoord/ansible-role-consul/commit/76ac85d3437addd61cb91e90f1229668b902e6c5))
+
 ### [2.0.1](https://github.com/snoord/ansible-role-consul/compare/2.0.0...2.0.1) (2020-09-29)
 
 
