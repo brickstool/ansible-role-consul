@@ -2,7 +2,7 @@
 - name: Download and unzip the consul archive locally
   unarchive:
     src: "https://releases.hashicorp.com/consul/{{ consul_version }}/consul_{{ consul_version }}_linux_amd64.zip"
-    dest: "{{ role_path }}/files/nomad"
+    dest: "{{ role_path }}/files/"
     remote_src: yes
     mode: '0755'
   delegate_to: localhost
