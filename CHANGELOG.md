@@ -1,3 +1,12 @@
+### [2.0.1](https://github.com/snoord/ansible-role-consul/compare/2.0.0...2.0.1) (2020-09-29)
+
+
+### Bug Fixes
+
+* 'consul' you ding-bat ([1d10939](https://github.com/snoord/ansible-role-consul/commit/1d10939b4edfb17e9832bcd2d405b23c3b01cb45))
+* use ./files dir, not ./files/nomad file, as unarchive dest ([19893f2](https://github.com/snoord/ansible-role-consul/commit/19893f2d30b7f0db00aaa1f3d32af5545ef3a0ac))
+* use role_path for storing nomad binary, not /tmp ([a4d9695](https://github.com/snoord/ansible-role-consul/commit/a4d96951b0904604fff2eb56ade248f4d45f95ea))
+
 ## [2.0.0](https://github.com/snoord/ansible-role-consul/compare/1.1.0...2.0.0) (2020-09-04)
 
 
