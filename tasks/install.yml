@@ -10,7 +10,7 @@
 
 - name: Transfer the consul binary to the target hosts
   copy:
-    src: "{{ role_path }}/files/nomad"
+    src: "{{ role_path }}/files/consul"
     dest: /usr/local/bin/consul
     mode: '0755'
     owner: root
